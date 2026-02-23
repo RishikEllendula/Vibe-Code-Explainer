@@ -1,0 +1,140 @@
+{
+  "name": "vibe-code-explainer",
+  "displayName": "Vibe Code Explainer",
+  "description": "Understand AI-generated code changes with intelligent explanations and visualizations",
+  "version": "0.1.0",
+  "publisher": "your-publisher-name",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Education",
+    "Visualization",
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vibeCodeExplainer.explainChange",
+        "title": "Explain This Change",
+        "category": "Vibe Explainer"
+      },
+      {
+        "command": "vibeCodeExplainer.showDiff",
+        "title": "Show Diff Visualization",
+        "category": "Vibe Explainer"
+      },
+      {
+        "command": "vibeCodeExplainer.generateSummary",
+        "title": "Generate Session Summary",
+        "category": "Vibe Explainer"
+      },
+      {
+        "command": "vibeCodeExplainer.openLearningPath",
+        "title": "Open Learning Path",
+        "category": "Vibe Explainer"
+      },
+      {
+        "command": "vibeCodeExplainer.openExplainerPanel",
+        "title": "Open Explainer Panel",
+        "category": "Vibe Explainer"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "vibeExplainer",
+          "title": "Vibe Explainer",
+          "icon": "resources/icons/icon.png"
+        }
+      ]
+    },
+    "views": {
+      "vibeExplainer": [
+        {
+          "id": "vibeExplainerChanges",
+          "name": "Recent Changes"
+        },
+        {
+          "id": "vibeExplainerLearning",
+          "name": "Learning Path"
+        },
+        {
+          "id": "vibeExplainerSession",
+          "name": "Session Summary"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Vibe Code Explainer",
+      "properties": {
+        "vibeCodeExplainer.autoExplain": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically explain changes when detected"
+        },
+        "vibeCodeExplainer.explanationDetail": {
+          "type": "string",
+          "enum": [
+            "brief",
+            "detailed",
+            "expert"
+          ],
+          "default": "detailed",
+          "description": "Level of detail in explanations"
+        },
+        "vibeCodeExplainer.showNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show notifications for code changes"
+        },
+        "vibeCodeExplainer.aiProvider": {
+          "type": "string",
+          "enum": [
+            "openai",
+            "local",
+            "anthropic"
+          ],
+          "default": "openai",
+          "description": "AI provider for explanations"
+        },
+        "vibeCodeExplainer.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "API key for AI provider"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "build:webview": "cd webview-ui && npm run build",
+    "watch:webview": "cd webview-ui && npm run dev"
+  },
+  "devDependencies": {
+    "@types/diff": "^7.0.2",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.56.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "diff": "^5.1.0",
+    "openai": "^4.20.1"
+  }
+}
