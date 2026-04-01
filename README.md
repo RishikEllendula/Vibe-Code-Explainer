@@ -1,6 +1,6 @@
 # Vibe Code Explainer
 
-An intelligent VS Code extension that helps developers understand AI-generated code changes through real-time explanations and visual diff views.
+An intelligent VS Code extension that helps developers understand AI-generated code changes through real-time explanations and visual different views.
 
 ---
 
